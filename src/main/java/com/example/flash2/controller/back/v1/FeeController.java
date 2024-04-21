@@ -4,6 +4,7 @@ import com.example.flash2.controller.request.FeeRequest;
 import com.example.flash2.controller.request.PaymentStatusRequest;
 import com.example.flash2.controller.response.FeeResponse;
 import com.example.flash2.controller.response.PaymentStatusResponse;
+import com.example.flash2.rabbit.RabbitMQPublisher;
 import com.example.flash2.service.CourseFeeService;
 //import com.example.flash.service.FeeService;
 import com.example.flash2.service.FeeService;
@@ -29,6 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class FeeController {
   private final FeeService feeService;
   private final CourseFeeService courseFeeService;
+  private final RabbitMQPublisher rabbitMQPublisher;
 
   @GetMapping(value = "/goodbye", produces = "application/json")
   public ResponseEntity<Double> getCourseRevenue( @RequestParam(value = "param", required = true, defaultValue = "") String param) {
@@ -39,6 +41,7 @@ public class FeeController {
   @PostMapping(value = "/paymentStatus", produces = "application/json")
   public ResponseEntity<List<PaymentStatusResponse>> getPaymentStatus(@RequestBody PaymentStatusRequest request) {
     List<PaymentStatusResponse> response = feeService.getPaymentStatus(request);
+    rabbitMQPublisher.sendMessage("Payment status requested");
     return ResponseEntity.ok(response);
   }
 }
