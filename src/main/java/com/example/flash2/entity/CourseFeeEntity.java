@@ -29,6 +29,6 @@ public class CourseFeeEntity {
   private Integer CourseTypeId;
 
   @Column(name = "FEE_PER_STUDENT")
-  private float FeePerStudent;
+  private double FeePerStudent;
 }
 

@@ -1,6 +1,5 @@
-package com.example.flash2.controller.request;
+package com.example.flash2.dto;
 
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,6 +13,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PaymentStatusRequest {
-  private List<CourseManagerRequest> courseManagerRequest;
+public class CourseFeeResponse {
+  Integer courseId;
+  double revenue;
 }
