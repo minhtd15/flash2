@@ -20,8 +20,8 @@ metadata:
     project: flash
 spec:
   containers:
-    - image: minhtd5/java:latest
-      name: batman
+    - image: minhtd5/flash2:v1
+      name: flash2
       ports:
         - containerPort: 8080
           protocol: TCP
