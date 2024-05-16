@@ -1,0 +1,27 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flash
+spec:
+  type: LoadBalancer
+  selector:
+    project: flash # Sửa selector để khớp với nhãn của Pod
+  ports:
+    - port: 80
+      targetPort: 8080 # Sửa targetPort để khớp với containerPort của Pod
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: flash
+  labels:
+    environment: production # Sửa lỗi chính tả trong key của nhãn (từ enviroment thành environment)
+    project: flash
+spec:
+  containers:
+    - image: minhtd5/java:latest
+      name: batman
+      ports:
+        - containerPort: 8080
+          protocol: TCP
