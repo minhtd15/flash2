@@ -63,6 +63,33 @@
     </dependency>
   </dependencies>
 
+  <profiles>
+    <profile>
+      <id>deploy-docker</id>
+      <properties>
+        <maven.deploy.skip>true</maven.deploy.skip>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.google.cloud.tools</groupId>
+            <artifactId>jib-maven-plugin</artifactId>
+            <version>3.2.0</version>
+            <configuration>
+              <to>
+                <image>minhtd5/java</image>
+                <tags>
+                  <tag>${project.version}</tag>
+                  <tag>latest</tag>
+                </tags>
+              </to>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
   <build>
     <plugins>
       <plugin>

@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface PaymentStatusRepository extends JpaRepository<PaymentStatusEntity, Integer> {
-  @Query(nativeQuery = true, value =  "SELECT p.* FROM PAYMENT_STATUS p WHERE p.COURSE_MANAGER_ID IN :courseManagerIds")
+  @Query(value = "SELECT * FROM PAYMENT_STATUS p WHERE p.COURSE_MANAGER_ID IN :courseManagerIds", nativeQuery = true)
   List<PaymentStatusEntity> getPaymentStatusEntitiesByCourseId(@Param("courseManagerIds") List<Integer> courseManagerIds);
 }
+
