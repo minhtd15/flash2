@@ -1,4 +1,4 @@
-FROM openjdk:17-jdk-slim
+FROM --platform=linux/amd64 openjdk:17-jdk-slim
 #FROM --platform=linux/amd64 amazoncorretto:17.0.7-alpine
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
