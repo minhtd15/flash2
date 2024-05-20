@@ -55,6 +55,7 @@ public class FeeController {
     try {
       log.info("Year param is: {}", year);
       YearlyPayment response = feeService.getYearlyRevenue(request, year);
+      log.info("Yearly revenue requested");
       return ResponseEntity.ok(response); // Trả về 200 (OK) và dữ liệu được trả về
     } catch (Exception e) {
       // Xử lý lỗi và trả về mã trạng thái 500 (Internal Server Error)
